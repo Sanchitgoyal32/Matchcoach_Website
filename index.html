@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hinge Coach — AI-Powered Replies for Hinge</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#E84393;--coral:#FF6B6B;--peach:#FFF0F0;--dark:#1A1A2E;--gold:#FFD700;--warm-white:#FFFAF5;--muted:#666}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--warm-white);overflow-x:hidden}
+
+/* HERO */
+.hero{min-height:90vh;background:linear-gradient(135deg,#FF6B6B 0%,#E84393 40%,#C44569 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(255,255,255,0.1) 0%,transparent 60%);animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+.hero-badge{background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);padding:8px 20px;border-radius:50px;font-size:13px;color:white;margin-bottom:20px;animation:fadeUp .6s ease;border:1px solid rgba(255,255,255,0.3)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,8vw,64px);color:white;line-height:1.1;margin-bottom:14px;animation:fadeUp .6s ease .1s both}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:clamp(15px,3vw,18px);color:rgba(255,255,255,0.9);max-width:460px;line-height:1.6;margin-bottom:28px;animation:fadeUp .6s ease .2s both}
+.dl-btn{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--pink);font-size:17px;font-weight:700;padding:16px 36px;border-radius:60px;text-decoration:none;transition:all .3s ease;animation:fadeUp .6s ease .3s both;box-shadow:0 8px 30px rgba(0,0,0,0.15)}
+.dl-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.2)}
+.hero-nums{display:flex;gap:32px;margin-top:32px;animation:fadeUp .6s ease .4s both}
+.hero-nums .n{color:white;text-align:center}
+.hero-nums .nv{font-size:24px;font-weight:700}
+.hero-nums .nl{font-size:12px;opacity:0.8}
+
+/* TRUST BAR */
+.trust{background:var(--dark);padding:14px 20px;text-align:center;color:rgba(255,255,255,0.7);font-size:13px}
+.trust span{color:#4CAF50;font-weight:700}
+
+/* REVIEWS CAROUSEL */
+.reviews-wrap{background:var(--warm-white);padding:48px 0 40px;overflow:hidden}
+.reviews-wrap .label{font-size:12px;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:8px}
+.reviews-wrap h2{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,36px);text-align:center;margin-bottom:24px;padding:0 20px}
+.carousel-outer{position:relative;width:100%;overflow:hidden}
+.carousel-track{display:flex;gap:16px;padding:0 20px;transition:transform 0.5s cubic-bezier(0.25,0.1,0.25,1);will-change:transform;cursor:grab}
+.carousel-track.dragging{transition:none;cursor:grabbing}
+.rv{flex:0 0 280px;background:white;padding:24px;border-radius:18px;box-shadow:0 2px 16px rgba(232,67,147,0.07);user-select:none;-webkit-user-select:none}
+.rv-stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:10px}
+.rv-text{font-size:13.5px;color:#444;line-height:1.55;margin-bottom:14px;font-style:italic}
+.rv-who{display:flex;align-items:center;gap:10px}
+.rv-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:white;flex-shrink:0}
+.rv-av.m{background:linear-gradient(135deg,#6C5CE7,#a29bfe)}
+.rv-av.f{background:linear-gradient(135deg,var(--coral),var(--pink))}
+.rv-name{font-size:13px;font-weight:700}
+.rv-meta{font-size:11px;color:var(--muted)}
+.carousel-dots{display:flex;justify-content:center;gap:6px;margin-top:20px}
+.carousel-dots .dot{width:8px;height:8px;border-radius:50%;background:#DDD;transition:all .3s}
+.carousel-dots .dot.active{background:var(--pink);width:20px;border-radius:4px}
+
+/* SECTIONS */
+section{padding:64px 20px;max-width:800px;margin:0 auto}
+.slabel{font-size:12px;font-weight:700;color:var(--pink);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,38px);color:var(--dark);margin-bottom:16px;line-height:1.2}
+
+/* HOW IT WORKS */
+.hiw{background:var(--peach)}
+.steps{display:grid;gap:16px;margin-top:32px}
+.step{display:flex;gap:16px;align-items:flex-start;background:white;padding:22px;border-radius:16px;box-shadow:0 2px 16px rgba(232,67,147,0.06)}
+.step-n{flex-shrink:0;width:42px;height:42px;background:linear-gradient(135deg,var(--coral),var(--pink));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:white}
+.step h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.step p{font-size:14px;color:var(--muted);line-height:1.5}
+
+/* FEATURES */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+.feat{background:white;padding:26px;border-radius:18px;border:1px solid #F0E6E6}
+.feat-i{font-size:28px;margin-bottom:12px}
+.feat h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.feat p{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* PRIVACY */
+.priv{background:#F0FFF0;border-radius:20px;padding:40px 28px;text-align:center;margin:40px auto;max-width:650px;border:2px solid #C8E6C9}
+.priv .lk{font-size:40px;margin-bottom:12px}
+.priv h2{color:#2E7D32;font-size:24px}
+.priv>p{color:#555;font-size:15px;line-height:1.7;margin-top:10px}
+.priv-pts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;text-align:left}
+.priv-pt{display:flex;align-items:center;gap:8px;font-size:13px;color:#2E7D32}
+.priv-pt .ck{flex-shrink:0;width:18px;height:18px;background:#4CAF50;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:10px}
+
+/* INSTALL */
+.inst{background:white;border-radius:20px;padding:32px;border:2px solid #F0E6E6;margin-top:32px}
+.inst h3{font-size:18px;font-weight:700;margin-bottom:20px;text-align:center}
+.ist{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #F5F5F5}
+.ist:last-child{border-bottom:none}
+.ist-n{flex-shrink:0;width:26px;height:26px;background:var(--peach);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--pink)}
+.ist p{font-size:14px;line-height:1.5;color:#444}
+.ist strong{color:var(--dark)}
+
+/* FAQ */
+.faq{margin-top:32px}
+.fq{border-bottom:1px solid #EEE;padding:18px 0}
+.fq-q{font-size:15px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.fq-q::after{content:'+';font-size:22px;color:var(--pink);transition:transform .3s}
+.fq-q.open::after{transform:rotate(45deg)}
+.fq-a{font-size:14px;color:var(--muted);line-height:1.6;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.fq-a.open{max-height:200px;padding-top:10px}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#FF6B6B,#E84393);padding:64px 20px;text-align:center}
+.cta h2{color:white;margin-bottom:10px}
+.cta p{color:rgba(255,255,255,0.85);font-size:16px;margin-bottom:28px}
+.cta .dl-btn{animation:none}
+
+footer{background:var(--dark);padding:32px 20px;text-align:center;color:rgba(255,255,255,0.5);font-size:12px}
+footer a{color:var(--pink);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.hero-nums{gap:20px}.priv-pts{grid-template-columns:1fr}.priv{padding:28px 20px}section{padding:48px 16px}.rv{flex:0 0 260px}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">&#x2705; Free for Android</div>
+    <h1>Never Run Out of<br>Good <span>Replies</span></h1>
+    <p>AI reads their profile and writes personalized, witty replies that actually get matches. One tap. Three options. More dates.</p>
+    <a href="https://github.com/Sanchitgoyal32/hingecoach_updates/releases/download/1.0/app-debug.apk" class="dl-btn">&#11015; Download for Android</a>
+    <div class="hero-nums">
+        <div class="n"><div class="nv">3</div><div class="nl">Replies per prompt</div></div>
+        <div class="n"><div class="nv">1s</div><div class="nl">To generate</div></div>
+        <div class="n"><div class="nv">100%</div><div class="nl">Private</div></div>
+    </div>
+</div>
+<div class="trust"><span>&#x1F512;</span> Data never leaves your phone &bull; No account needed &bull; Works for everyone</div>
+
+<!-- REVIEWS CAROUSEL — immediately after hero -->
+<div class="reviews-wrap">
+    <div class="label">What people are saying</div>
+    <h2>Real people, real matches</h2>
+    <div class="carousel-outer">
+        <div class="carousel-track" id="track">
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"Went from 1 match a week to 4-5. The replies sound like me, not some cringe AI garbage. Actually got a date within 3 days."</div>
+                <div class="rv-who"><div class="rv-av m">A</div><div><div class="rv-name">A., 24, M</div><div class="rv-meta">Delhi</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"Finally something that doesn't suggest 'hey beautiful'. The tone control is genius &mdash; I use Funny for most guys and Flirty for the cute ones 😂"</div>
+                <div class="rv-who"><div class="rv-av f">P</div><div><div class="rv-name">P., 23, F</div><div class="rv-meta">Mumbai</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                <div class="rv-text">"Was skeptical about permissions but it only works on Hinge. Got 3 dates in the first week. Profile scan feature is a game changer."</div>
+                <div class="rv-who"><div class="rv-av m">R</div><div><div class="rv-name">R., 26, M</div><div class="rv-meta">Bangalore</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"I hate writing first messages. This reads his profile and gives me something relevant. Matched with 2 people I genuinely like."</div>
+                <div class="rv-who"><div class="rv-av f">S</div><div><div class="rv-name">S., 22, F</div><div class="rv-meta">Pune</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"Bro this is unfair advantage lol. Every reply is personalized to her profile. She said 'wow no one's ever noticed that before' 😂"</div>
+                <div class="rv-who"><div class="rv-av m">V</div><div><div class="rv-name">V., 25, M</div><div class="rv-meta">Hyderabad</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+                <div class="rv-text">"The more I use it, the better suggestions get. It learns my vibe. Wish it worked on Bumble too but for Hinge it's perfect."</div>
+                <div class="rv-who"><div class="rv-av f">M</div><div><div class="rv-name">M., 27, F</div><div class="rv-meta">Gurgaon</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"Not great with words, always took 20 mins to reply. Now it's instant and sounds way better. My match rate literally tripled."</div>
+                <div class="rv-who"><div class="rv-av m">K</div><div><div class="rv-name">K., 28, M</div><div class="rv-meta">Chennai</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"Used to just like photos without commenting. Now I send thoughtful replies and my match rate went up crazy. Love that it's free."</div>
+                <div class="rv-who"><div class="rv-av f">N</div><div><div class="rv-name">N., 21, F</div><div class="rv-meta">Kolkata</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"My friend told me about this and I was like no way. Tried it and got 2 matches the same evening. The confident tone option is fire."</div>
+                <div class="rv-who"><div class="rv-av m">D</div><div><div class="rv-name">D., 23, M</div><div class="rv-meta">Jaipur</div></div></div>
+            </div>
+            <div class="rv">
+                <div class="rv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div class="rv-text">"As a girl, I appreciate that it doesn't give generic pickup lines. It actually reads his profile and helps me start real conversations."</div>
+                <div class="rv-who"><div class="rv-av f">T</div><div><div class="rv-name">T., 25, F</div><div class="rv-meta">Noida</div></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+</div>
+
+<!-- SECOND DOWNLOAD CTA -->
+<div style="text-align:center;padding:32px 20px;background:var(--peach)">
+    <a href="https://github.com/Sanchitgoyal32/hingecoach_updates/releases/download/1.0/app-debug.apk" class="dl-btn" style="animation:none;font-size:16px;padding:14px 32px">&#11015; Download Now &mdash; Free</a>
+    <p style="margin-top:12px;font-size:12px;color:var(--muted)">Android only &bull; 10MB &bull; No sign-up</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="hiw">
+    <div class="slabel">How it works</div>
+    <h2>From "what do I say?" to matched in 60 seconds</h2>
+    <div class="steps">
+        <div class="step"><div class="step-n">1</div><div><h3>Open Hinge</h3><p>A floating heart bubble appears automatically. Stays out of the way until you need it.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div><h3>Scroll their profile</h3><p>The app reads their prompts, bio, interests automatically. No typing or screenshots needed.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div><h3>Tap the heart</h3><p>Get 3 personalized replies based on their profile AND your personality. Tap Copy, paste in Hinge.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div><h3>Adjust the vibe</h3><p>Not feeling it? Tap Flirty, Funny, or Confident to regenerate with a different tone.</p></div></div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+    <div class="slabel">Why it works</div>
+    <h2>Not your average AI chatbot</h2>
+    <div class="feats">
+        <div class="feat"><div class="feat-i">&#x1F9E0;</div><h3>Learns your style</h3><p>Adapts to which replies you pick. Gets better the more you use it.</p></div>
+        <div class="feat"><div class="feat-i">&#x1F4F7;</div><h3>Scans your profile</h3><p>Reads your own prompts once. Every reply now highlights your personality.</p></div>
+        <div class="feat"><div class="feat-i">&#x1F3AF;</div><h3>Reads THEIR profile</h3><p>References their specific interests for replies that feel genuinely personal.</p></div>
+        <div class="feat"><div class="feat-i">&#x1F525;</div><h3>Learns from matches</h3><p>Tracks which replies got real matches. Uses that to improve future suggestions.</p></div>
+        <div class="feat"><div class="feat-i">&#x26A1;</div><h3>Instant</h3><p>One tap, 3 options, under 2 seconds. No app switching needed.</p></div>
+        <div class="feat"><div class="feat-i">&#x1F3AD;</div><h3>Tone control</h3><p>Flirty, Funny, or Confident. Different people need different energy.</p></div>
+    </div>
+</section>
+
+<!-- PRIVACY -->
+<section>
+    <div class="priv">
+        <div class="lk">&#x1F512;</div>
+        <h2>Your privacy is sacred</h2>
+        <p>Your data is yours. Period. Nothing ever leaves your phone.</p>
+        <div class="priv-pts">
+            <div class="priv-pt"><div class="ck">&#x2713;</div>Only reads the Hinge app</div>
+            <div class="priv-pt"><div class="ck">&#x2713;</div>All data stored locally</div>
+            <div class="priv-pt"><div class="ck">&#x2713;</div>No account needed</div>
+            <div class="priv-pt"><div class="ck">&#x2713;</div>No data shared with anyone</div>
+            <div class="priv-pt"><div class="ck">&#x2713;</div>No photos accessed</div>
+            <div class="priv-pt"><div class="ck">&#x2713;</div>Only text prompts read</div>
+        </div>
+    </div>
+</section>
+
+<!-- INSTALL -->
+<section>
+    <div class="slabel">Installation</div>
+    <h2>Set up in 2 minutes</h2>
+    <div class="inst">
+        <h3>Quick install guide</h3>
+        <div class="ist"><div class="ist-n">1</div><p><strong>Download the APK</strong> &mdash; Tap the download button. About 10MB.</p></div>
+        <div class="ist"><div class="ist-n">2</div><p><strong>Allow installation</strong> &mdash; Android asks to allow installs from this source. Tap "Install anyway". This is normal for apps outside the Play Store.</p></div>
+        <div class="ist"><div class="ist-n">3</div><p><strong>Open Hinge Coach</strong> &mdash; Enable "Display over apps" and "Accessibility". We only read Hinge, nothing else.</p></div>
+        <div class="ist"><div class="ist-n">4</div><p><strong>Open Hinge</strong> &mdash; See the floating heart. Scroll a profile, tap the heart, get replies. That's it!</p></div>
+        <div class="ist"><div class="ist-n">5</div><p><strong>Bonus</strong> &mdash; Go to your profile's Edit page. Bubble turns to a camera. Tap &amp; scroll down to scan your profile for even better replies.</p></div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section>
+    <div class="slabel">FAQ</div>
+    <h2>Quick answers</h2>
+    <div class="faq">
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Is this safe?</div><div class="fq-a">Yes. Only reads Hinge text. No photos, passwords, or other apps. All data stays on your phone. No servers, no accounts.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Will Hinge ban me?</div><div class="fq-a">No. The app doesn't automate anything. It suggests replies that YOU copy and paste. Hinge sees you typing normally.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Why the Accessibility permission?</div><div class="fq-a">To read prompts on screen automatically. Only activates inside Hinge. Reads nothing from any other app.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Is it free?</div><div class="fq-a">Yes! 10 free replies first session. Then watch a short video to unlock more. No subscriptions, no hidden fees.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Why not on Play Store?</div><div class="fq-a">Google has strict accessibility rules. We're getting approved. Meanwhile, the APK is the exact same app.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Works on iPhone?</div><div class="fq-a">Not yet. iOS doesn't allow reading other apps. Android only for now.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Works for girls too?</div><div class="fq-a">Absolutely. The AI adapts to your profile and style regardless of gender. It reads the other person's profile and crafts replies matching YOUR personality.</div></div>
+    </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="cta">
+    <h2>Your next match is one tap away</h2>
+    <p>Smarter replies. Better matches. Zero effort.</p>
+    <a href="https://github.com/Sanchitgoyal32/hingecoach_updates/releases/download/1.0/app-debug.apk" class="dl-btn" style="animation:none">&#11015; Download for Android &mdash; Free</a>
+</div>
+
+<footer>
+    <p>Hinge Coach is not affiliated with or endorsed by Hinge or Match Group.</p>
+    <p style="margin-top:8px">Made with &#x2764; in India &bull; <a href="mailto:sanchitgoyal32@gmail.com">Contact</a> &bull; <a href="#privacy">Privacy</a></p>
+    <p style="margin-top:6px;font-size:10px">&copy; 2026 Hinge Coach</p>
+</footer>
+
+<script>
+// Auto-scrolling carousel with swipe support
+const track = document.getElementById('track');
+const dotsContainer = document.getElementById('dots');
+const cards = track.querySelectorAll('.rv');
+const cardWidth = 280 + 16; // card width + gap
+const totalCards = cards.length;
+const visibleCards = Math.floor(window.innerWidth / cardWidth) || 1;
+const totalDots = Math.max(totalCards - visibleCards + 1, 1);
+let current = 0;
+let autoTimer;
+let startX = 0;
+let isDragging = false;
+let dragStartPos = 0;
+
+// Create dots
+for (let i = 0; i < Math.min(totalDots, 8); i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+}
+
+function goTo(index) {
+    current = index;
+    if (current >= totalDots) current = 0;
+    if (current < 0) current = totalDots - 1;
+    track.style.transform = `translateX(-${current * cardWidth}px)`;
+    dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+        d.className = 'dot' + (i === current % Math.min(totalDots, 8) ? ' active' : '');
+    });
+}
+
+function startAuto() {
+    autoTimer = setInterval(() => goTo(current + 1), 3500);
+}
+
+function stopAuto() {
+    clearInterval(autoTimer);
+}
+
+// Touch/swipe support
+track.addEventListener('touchstart', (e) => {
+    stopAuto();
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    dragStartPos = current * cardWidth;
+    track.classList.add('dragging');
+}, { passive: true });
+
+track.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const diff = startX - e.touches[0].clientX;
+    track.style.transform = `translateX(-${dragStartPos + diff}px)`;
+}, { passive: true });
+
+track.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('dragging');
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+        goTo(current + (diff > 0 ? 1 : -1));
+    } else {
+        goTo(current);
+    }
+    startAuto();
+});
+
+// Mouse drag support for desktop
+track.addEventListener('mousedown', (e) => {
+    stopAuto();
+    startX = e.clientX;
+    isDragging = true;
+    dragStartPos = current * cardWidth;
+    track.classList.add('dragging');
+    e.preventDefault();
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const diff = startX - e.clientX;
+    track.style.transform = `translateX(-${dragStartPos + diff}px)`;
+});
+
+document.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('dragging');
+    const diff = startX - e.clientX;
+    if (Math.abs(diff) > 50) {
+        goTo(current + (diff > 0 ? 1 : -1));
+    } else {
+        goTo(current);
+    }
+    startAuto();
+});
+
+// Start auto-scroll
+startAuto();
+
+// Pause on visibility change
+document.addEventListener('visibilitychange', () => {
+    document.hidden ? stopAuto() : startAuto();
+});
+</script>
+
+</body>
+</html>
