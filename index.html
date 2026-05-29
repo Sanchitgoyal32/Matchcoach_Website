@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MatchCoach — AI-Powered Replies for Dating Apps</title>
-<meta name="description" content="AI reads their dating profile and writes personalized, witty replies that actually get matches. Free floating bubble for Hinge, Bumble & Tinder.">
+<meta name="description" content="AI reads their dating profile and writes personalized, witty replies that actually get matches. Works with Hinge, Bumble & Tinder on Android & iOS.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--pink:#E84393;--coral:#FF6B6B;--peach:#FFF0F0;--dark:#1A1A2E;--gold:#DAA520;--warm:#FFFAF5;--muted:#666}
@@ -19,9 +19,14 @@ body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--warm);o
 .hero>p{font-size:clamp(14px,2.5vw,17px);color:rgba(255,255,255,0.9);max-width:440px;line-height:1.5;margin-bottom:20px;animation:fu .5s ease .15s both}
 .btn{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--pink);font-size:16px;font-weight:700;padding:14px 32px;border-radius:60px;text-decoration:none;transition:all .3s;box-shadow:0 6px 24px rgba(0,0,0,0.12);position:relative;z-index:2}
 .btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,0.18)}
-.apps{display:flex;gap:12px;margin-top:16px;animation:fu .5s ease .2s both}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;animation:fu .5s ease .2s both}
+.btn-android{background:white;color:#3DDC84}
+.btn-ios{background:white;color:#007AFF}
+.btn-support{background:rgba(255,255,255,0.15);color:white;border:1.5px solid rgba(255,255,255,0.4);font-size:14px;padding:12px 24px}
+.btn-support:hover{background:rgba(255,255,255,0.25)}
+.apps{display:flex;gap:12px;margin-top:16px;animation:fu .5s ease .25s both}
 .apps span{background:rgba(255,255,255,0.15);padding:6px 14px;border-radius:20px;font-size:12px;color:white;font-weight:500}
-.nums{display:flex;gap:28px;margin-top:18px;animation:fu .5s ease .25s both}
+.nums{display:flex;gap:28px;margin-top:18px;animation:fu .5s ease .3s both}
 .nums .n{color:white;text-align:center}
 .nums .nv{font-size:22px;font-weight:700}
 .nums .nl{font-size:11px;opacity:0.75}
@@ -94,12 +99,13 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,30px);color:var
 .cta{background:linear-gradient(135deg,#FF6B6B,#E84393);padding:36px 16px;text-align:center}
 .cta h2{color:white;font-size:clamp(18px,4vw,26px);margin-bottom:6px}
 .cta p{color:rgba(255,255,255,0.85);font-size:13px;margin-bottom:16px}
+.cta .btn-row{margin-top:16px}
 footer{background:var(--dark);padding:20px 16px;text-align:center;color:rgba(255,255,255,0.4);font-size:10px;line-height:1.6}
 footer a{color:var(--pink);text-decoration:none}
 @keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @media(min-width:768px){.hero{padding:64px 40px 52px}.sec{padding:36px 40px}.feats{grid-template-columns:repeat(3,1fr)}.steps{grid-template-columns:1fr 1fr}.rv{flex:0 0 300px}.pp{grid-template-columns:1fr 1fr 1fr}.priv{padding:28px 32px}.inst{padding:28px}}
 @media(min-width:1100px){.hero h1{font-size:56px}.sec{max-width:1000px}}
-@media(max-width:480px){.hero{padding:36px 16px 32px}.nums{gap:16px}.feats{grid-template-columns:1fr}.pp{grid-template-columns:1fr}.sec{padding:22px 14px}}
+@media(max-width:480px){.hero{padding:36px 16px 32px}.nums{gap:16px}.feats{grid-template-columns:1fr}.pp{grid-template-columns:1fr}.sec{padding:22px 14px}.btn-row{flex-direction:column;align-items:center}}
 </style>
 </head>
 <body>
@@ -109,14 +115,21 @@ footer a{color:var(--pink);text-decoration:none}
         <div style="width:28px;height:28px;background:linear-gradient(135deg,#E84393,#FD79A8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px">&#x26A1;</div>
         <span style="color:white;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif">MatchCoach</span>
     </div>
-    <a href="https://play.google.com/store/apps/details?id=com.matchcoach.app" style="background:var(--pink);color:white;font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;text-decoration:none;font-family:'DM Sans',sans-serif">Download</a>
+    <div style="display:flex;gap:8px">
+        <a href="https://play.google.com/store/apps/details?id=com.matchcoach.app" style="background:#3DDC84;color:white;font-size:11px;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;font-family:'DM Sans',sans-serif">Android</a>
+        <a href="https://apps.apple.com/app/matchcoach-ai-dating-rizz/id6773615477" style="background:#007AFF;color:white;font-size:11px;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none;font-family:'DM Sans',sans-serif">iOS</a>
+    </div>
 </nav>
 
 <div class="hero">
     <div class="hero-logo">&#x26A1;</div>
     <h1>Never Run Out of<br>Good <span>Replies</span></h1>
-    <p>AI reads their profile and writes personalized replies that actually get matches. Floating bubble. Three options. One tap to copy.</p>
-    <div class="btn" style="background:rgba(255,255,255,0.6);cursor:default;pointer-events:none">&#x26A1; Launching Soon on Google Play</div>
+    <p>AI reads their profile and writes personalized replies that actually get matches. Screenshot. Pick a tone. Copy the perfect response.</p>
+    <div class="btn-row">
+        <a href="https://play.google.com/store/apps/details?id=com.matchcoach.app" class="btn btn-android">&#x1F4F1; Get on Android</a>
+        <a href="https://apps.apple.com/app/matchcoach-ai-dating-rizz/id6773615477" class="btn btn-ios">&#xF8FF; Get on iOS</a>
+        <a href="mailto:sanchitgoyal2411@gmail.com" class="btn btn-support">&#x2709; Support</a>
+    </div>
     <div class="apps">
         <span>&#x1F49C; Hinge</span>
         <span>&#x1F41D; Bumble</span>
@@ -128,20 +141,20 @@ footer a{color:var(--pink);text-decoration:none}
         <div class="n"><div class="nv">100%</div><div class="nl">Free</div></div>
     </div>
 </div>
-<div class="trust"><b>&#x1F512;</b> No keyboard access needed &bull; No scary permissions &bull; Images stay on your device</div>
+<div class="trust"><b>&#x1F512;</b> Screenshots processed securely &bull; Never stored &bull; No account required</div>
 
 <div class="rvw">
     <div class="lbl">What people are saying</div>
     <h2>Real people, real matches</h2>
     <div class="co"><div class="ct" id="tk">
         <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Went from 1 match a week to 4-5. The replies sound like me, not cringe AI garbage."</div><div class="rv-w"><div class="rv-a m">A</div><div><div class="rv-n">A., 24, M</div><div class="rv-m">Delhi</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"The floating bubble is genius. No switching apps. Screenshot, tap, copy, paste. Done."</div><div class="rv-w"><div class="rv-a f">P</div><div><div class="rv-n">P., 23, F</div><div class="rv-m">Mumbai</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9734;</div><div class="rv-t">"Got 3 dates in the first week. Hinglish mode is fire for Indian dating apps."</div><div class="rv-w"><div class="rv-a m">R</div><div><div class="rv-n">R., 26, M</div><div class="rv-m">Bangalore</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Was paying ₹2400/month for Rizz AI. This is free and the bubble works better."</div><div class="rv-w"><div class="rv-a m">S</div><div><div class="rv-n">S., 22, M</div><div class="rv-m">Pune</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Every reply is personalized. She said 'wow no one's ever noticed that before' 😂"</div><div class="rv-w"><div class="rv-a m">V</div><div><div class="rv-n">V., 25, M</div><div class="rv-m">Hyderabad</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9734;</div><div class="rv-t">"The more I dislike bad replies, the better it gets. It actually learns my vibe."</div><div class="rv-w"><div class="rv-a f">M</div><div><div class="rv-n">M., 27, F</div><div class="rv-m">Gurgaon</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Works on Bumble too. Sends multiple screenshots for better context. Smart."</div><div class="rv-w"><div class="rv-a m">K</div><div><div class="rv-n">K., 28, M</div><div class="rv-m">Chennai</div></div></div></div>
-        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"No scary keyboard permission like Keys AI. Just a simple bubble. Love it."</div><div class="rv-w"><div class="rv-a f">N</div><div><div class="rv-n">N., 21, F</div><div class="rv-m">Kolkata</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Screenshot, pick a tone, copy, paste. That's literally it. So smooth."</div><div class="rv-w"><div class="rv-a f">P</div><div><div class="rv-n">P., 23, F</div><div class="rv-m">Mumbai</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9734;</div><div class="rv-t">"Got 3 dates in the first week. Confident tone is fire for Indian dating apps."</div><div class="rv-w"><div class="rv-a m">R</div><div><div class="rv-n">R., 26, M</div><div class="rv-m">Bangalore</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Was paying for Rizz AI. This is free and the replies are way more personalized."</div><div class="rv-w"><div class="rv-a m">S</div><div><div class="rv-n">S., 22, M</div><div class="rv-m">Pune</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Every reply is personalized. She said 'wow no one's ever noticed that before'"</div><div class="rv-w"><div class="rv-a m">V</div><div><div class="rv-n">V., 25, M</div><div class="rv-m">Hyderabad</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9734;</div><div class="rv-t">"Love the 4 tones. Flirty for Bumble, Funny for Hinge. Different energy each time."</div><div class="rv-w"><div class="rv-a f">M</div><div><div class="rv-n">M., 27, F</div><div class="rv-m">Gurgaon</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Works on Bumble too. Multiple screenshots for better context. Smart."</div><div class="rv-w"><div class="rv-a m">K</div><div><div class="rv-n">K., 28, M</div><div class="rv-m">Chennai</div></div></div></div>
+        <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"The keyboard extension on iOS is clutch. Reply without leaving the dating app."</div><div class="rv-w"><div class="rv-a f">N</div><div><div class="rv-n">N., 21, F</div><div class="rv-m">Kolkata</div></div></div></div>
         <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Friend told me about this. Got 2 matches same evening. Confident tone is fire."</div><div class="rv-w"><div class="rv-a m">D</div><div><div class="rv-n">D., 23, M</div><div class="rv-m">Jaipur</div></div></div></div>
         <div class="rv"><div class="rv-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-t">"Doesn't give generic pickup lines. References their actual profile. Real conversations."</div><div class="rv-w"><div class="rv-a f">T</div><div><div class="rv-n">T., 25, F</div><div class="rv-m">Noida</div></div></div></div>
     </div></div>
@@ -149,18 +162,19 @@ footer a{color:var(--pink);text-decoration:none}
 </div>
 
 <div class="mcta">
-    <div class="btn" style="background:rgba(232,67,147,0.3);color:white;cursor:default;pointer-events:none">&#x26A1; Launching Soon &mdash; Stay Tuned</div>
-    <p>Android &bull; 7MB &bull; No sign-up &bull; No keyboard access</p>
+    <a href="https://play.google.com/store/apps/details?id=com.matchcoach.app" class="btn" style="background:var(--pink);color:white;margin-right:8px">&#x1F4F1; Android</a>
+    <a href="https://apps.apple.com/app/matchcoach-ai-dating-rizz/id6773615477" class="btn" style="background:#007AFF;color:white">&#xF8FF; iOS</a>
+    <p>100% Free &bull; No sign-up &bull; Android &amp; iOS</p>
 </div>
 
 <div class="sec hiw">
     <div class="lbl">How it works</div>
     <h2>Matched in 60 seconds</h2>
     <div class="steps">
-        <div class="st"><div class="st-n">1</div><div><h3>Start the bubble</h3><p>Tap "Start Bubble" in MatchCoach. A floating &#x26A1; appears on screen.</p></div></div>
-        <div class="st"><div class="st-n">2</div><div><h3>Screenshot a profile</h3><p>Open Hinge, Bumble or Tinder. See someone you like? Screenshot their profile.</p></div></div>
-        <div class="st"><div class="st-n">3</div><div><h3>Tap the bubble</h3><p>Select your screenshots, pick a tone &mdash; Funny, Flirty, Bold or Hinglish.</p></div></div>
-        <div class="st"><div class="st-n">4</div><div><h3>Copy &amp; paste</h3><p>3 personalized replies appear. Tap one to copy. Long-press to paste in the dating app.</p></div></div>
+        <div class="st"><div class="st-n">1</div><div><h3>Screenshot a profile</h3><p>Open Hinge, Bumble or Tinder. See someone you like? Screenshot their profile or conversation.</p></div></div>
+        <div class="st"><div class="st-n">2</div><div><h3>Open MatchCoach</h3><p>Select up to 3 screenshots. The AI reads everything &mdash; photos, prompts, bio, interests.</p></div></div>
+        <div class="st"><div class="st-n">3</div><div><h3>Pick a tone</h3><p>Choose Funny, Flirty, Confident, or Local. Different energy for different people.</p></div></div>
+        <div class="st"><div class="st-n">4</div><div><h3>Copy &amp; paste</h3><p>3 personalized replies appear. Tap to copy, paste into your dating app. Done.</p></div></div>
     </div>
 </div>
 
@@ -168,12 +182,12 @@ footer a{color:var(--pink);text-decoration:none}
     <div class="lbl">Why it works</div>
     <h2>Not your average AI chatbot</h2>
     <div class="feats">
-        <div class="ft"><div class="ft-i">&#x26A1;</div><h3>Floating bubble</h3><p>Works right on top of any dating app. No switching needed.</p></div>
-        <div class="ft"><div class="ft-i">&#x1F4F7;</div><h3>Multi-screenshot</h3><p>Select multiple screenshots for better profile context.</p></div>
-        <div class="ft"><div class="ft-i">&#x1F3AF;</div><h3>Reads THEIR profile</h3><p>References their specific prompts and interests.</p></div>
-        <div class="ft"><div class="ft-i">&#x1F9E0;</div><h3>Learns your style</h3><p>Dislike bad replies. AI adapts to your preferences over time.</p></div>
-        <div class="ft"><div class="ft-i">&#x1F3AD;</div><h3>4 tones</h3><p>Funny, Flirty, Bold, or Hinglish. Different energy for different people.</p></div>
-        <div class="ft"><div class="ft-i">&#x1F512;</div><h3>No scary permissions</h3><p>No keyboard access. Just overlay + photo. That's it.</p></div>
+        <div class="ft"><div class="ft-i">&#x1F3AF;</div><h3>Reads THEIR profile</h3><p>References their specific prompts, photos, and interests. Not generic.</p></div>
+        <div class="ft"><div class="ft-i">&#x1F4F7;</div><h3>Multi-screenshot</h3><p>Select up to 3 screenshots for better profile context and smarter replies.</p></div>
+        <div class="ft"><div class="ft-i">&#x1F3AD;</div><h3>4 reply tones</h3><p>Funny, Flirty, Confident, or Local. Match your energy to theirs.</p></div>
+        <div class="ft"><div class="ft-i">&#x26A1;</div><h3>Android: Floating bubble</h3><p>Works right on top of any dating app. No switching needed.</p></div>
+        <div class="ft"><div class="ft-i">&#x2328;</div><h3>iOS: Keyboard extension</h3><p>Generate replies directly inside any messaging app via the MatchCoach keyboard.</p></div>
+        <div class="ft"><div class="ft-i">&#x1F30D;</div><h3>50+ languages</h3><p>Auto-detects language from the profile. Replies in Hindi, Portuguese, Arabic &amp; more.</p></div>
     </div>
 </div>
 
@@ -184,11 +198,11 @@ footer a{color:var(--pink);text-decoration:none}
         <table>
             <tr><th>Feature</th><th class="mc">MatchCoach</th><th>Rizz AI</th><th>Keys AI</th></tr>
             <tr><td>Price</td><td class="mc yes">Free</td><td class="no">$7/week</td><td class="no">$7/week</td></tr>
-            <tr><td>Floating bubble</td><td class="mc yes">&#x2713; Yes</td><td class="no">&#x2717; No</td><td class="no">&#x2717; No</td></tr>
-            <tr><td>Scary permissions</td><td class="mc yes">None</td><td>Minimal</td><td class="no">Keyboard access</td></tr>
-            <tr><td>Hinglish</td><td class="mc yes">&#x2713; Yes</td><td class="no">&#x2717; No</td><td class="no">&#x2717; No</td></tr>
-            <tr><td>Multi-screenshot</td><td class="mc yes">&#x2713; Yes</td><td class="no">&#x2717; No</td><td class="no">&#x2717; No</td></tr>
-            <tr><td>Learns your style</td><td class="mc yes">&#x2713; Yes</td><td>Basic</td><td>Basic</td></tr>
+            <tr><td>Android overlay</td><td class="mc yes">&#x2713; Bubble</td><td class="no">&#x2717; No</td><td class="no">&#x2717; No</td></tr>
+            <tr><td>iOS keyboard</td><td class="mc yes">&#x2713; Yes</td><td class="no">&#x2717; No</td><td>&#x2713; Yes</td></tr>
+            <tr><td>Multi-screenshot</td><td class="mc yes">&#x2713; Up to 3</td><td class="no">&#x2717; No</td><td class="no">&#x2717; No</td></tr>
+            <tr><td>Profile-aware AI</td><td class="mc yes">&#x2713; Yes</td><td>Basic</td><td>Basic</td></tr>
+            <tr><td>Local language</td><td class="mc yes">&#x2713; 50+</td><td>12</td><td>6</td></tr>
         </table>
     </div>
 </div>
@@ -197,52 +211,44 @@ footer a{color:var(--pink);text-decoration:none}
     <div class="priv">
         <div class="lk">&#x1F512;</div>
         <h2>Your privacy is sacred</h2>
-        <p>Your data is yours. Images stay on your phone.</p>
+        <p>Your data is yours. Screenshots processed securely and never stored.</p>
         <div class="pp">
-            <div class="ppt"><div class="ck">&#x2713;</div>No keyboard access</div>
-            <div class="ppt"><div class="ck">&#x2713;</div>All data local</div>
             <div class="ppt"><div class="ck">&#x2713;</div>No account needed</div>
+            <div class="ppt"><div class="ck">&#x2713;</div>Screenshots never stored</div>
             <div class="ppt"><div class="ck">&#x2713;</div>No data shared</div>
-            <div class="ppt"><div class="ck">&#x2713;</div>Images never stored</div>
-            <div class="ppt"><div class="ck">&#x2713;</div>Simple overlay only</div>
+            <div class="ppt"><div class="ck">&#x2713;</div>Processed securely</div>
+            <div class="ppt"><div class="ck">&#x2713;</div>No tracking</div>
+            <div class="ppt"><div class="ck">&#x2713;</div>Privacy first</div>
         </div>
-    </div>
-</div>
-
-<div class="sec" style="padding-top:8px">
-    <div class="lbl">Setup</div>
-    <h2>2-minute install</h2>
-    <div class="inst">
-        <h3>Get started in 4 steps</h3>
-        <div class="is"><div class="is-n">1</div><p><strong>Download</strong> &mdash; Get MatchCoach from Google Play Store. ~7MB.</p></div>
-        <div class="is"><div class="is-n">2</div><p><strong>Permissions</strong> &mdash; Enable "Display over other apps" (simple toggle) and photo access.</p></div>
-        <div class="is"><div class="is-n">3</div><p><strong>Start Bubble</strong> &mdash; Tap the button. A floating &#x26A1; bubble appears on your screen.</p></div>
-        <div class="is"><div class="is-n">4</div><p><strong>Screenshot &amp; tap</strong> &mdash; Screenshot any dating profile, tap the bubble, pick a reply!</p></div>
     </div>
 </div>
 
 <div class="sec" style="padding-top:8px">
     <div class="lbl">FAQ</div>
     <div class="faq">
-        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Is this safe?</div><div class="fq-a">Yes. No keyboard access needed. Only uses "display over apps" (like Messenger chat heads) and photo access to read screenshots. All data stays on your phone.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Is this safe?</div><div class="fq-a">Yes. Screenshots are processed securely and never stored. No account needed. Your dating conversations stay private.</div></div>
         <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Will Hinge/Bumble/Tinder ban me?</div><div class="fq-a">No. MatchCoach doesn't interact with dating apps at all. It reads your screenshots and you manually copy-paste replies. The dating app sees you typing normally.</div></div>
-        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Is it really free?</div><div class="fq-a">Yes! First 5 replies are completely free. After that, watch a quick ad to continue. No subscriptions, no hidden charges.</div></div>
-        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">How is this different from Rizz AI or Keys AI?</div><div class="fq-a">MatchCoach is free (they charge $7/week), uses a floating bubble (no app switching), supports Hinglish, and doesn't need keyboard access. Better UX, zero cost.</div></div>
-        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Works on iPhone?</div><div class="fq-a">Not yet. Android only for now. iOS doesn't allow floating bubbles over other apps.</div></div>
-        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">What is Hinglish mode?</div><div class="fq-a">Replies in a natural mix of Hindi and English &mdash; the way young Indians actually text. Perfect for Indian dating apps. Automatically detected if your phone is set to India.</div></div>
-        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Does it work for everyone?</div><div class="fq-a">Absolutely. Works for all genders. Upload your profile screenshots to personalize replies to your style.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Is it really free?</div><div class="fq-a">Yes! MatchCoach is completely free to use. Watch a quick ad occasionally to continue, or subscribe for an ad-free experience.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">What's the difference between Android and iOS?</div><div class="fq-a">On Android, MatchCoach uses a floating bubble overlay that sits on top of your dating app. On iOS, it includes a custom keyboard extension so you can generate replies without leaving the conversation. Both platforms have the full in-app experience.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">How is this different from Rizz AI or Keys AI?</div><div class="fq-a">MatchCoach offers 7 free replies (competitors charge $7/week from day 1), supports 50+ languages, reads up to 3 screenshots for better context, and has platform-specific features like the Android floating bubble and iOS keyboard.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">What languages does it support?</div><div class="fq-a">50+ languages including Hindi, Spanish, Portuguese, Arabic, Korean, French, German, and more. It auto-detects the language from the profile and replies in the same language.</div></div>
+        <div class="fq"><div class="fq-q" onclick="this.classList.toggle('op');this.nextElementSibling.classList.toggle('op')">Does it work for everyone?</div><div class="fq-a">Absolutely. Works for all genders and orientations. Upload your profile screenshots to personalize replies to your style and personality.</div></div>
     </div>
 </div>
 
 <div class="cta">
     <h2>Your next match is one tap away</h2>
-    <p>Smarter replies. Better matches. Zero cost.</p>
-    <div class="btn" style="cursor:default;pointer-events:none">&#x26A1; Launching Soon on Google Play</div>
+    <p>Smarter replies. Better matches. Available on Android &amp; iOS.</p>
+    <div class="btn-row">
+        <a href="https://play.google.com/store/apps/details?id=com.matchcoach.app" class="btn btn-android">&#x1F4F1; Get on Android</a>
+        <a href="https://apps.apple.com/app/matchcoach-ai-dating-rizz/id6773615477" class="btn btn-ios">&#xF8FF; Get on iOS</a>
+        <a href="mailto:sanchitgoyal2411@gmail.com" class="btn btn-support">&#x2709; Contact Support</a>
+    </div>
 </div>
 
 <footer>
     Not affiliated with Hinge, Bumble, Tinder or Match Group.<br>
-    Made with &#x2764; in India &bull; <a href="mailto:matchcoachapp@gmail.com">Contact</a> &bull; <a href="https://sanchitgoyal32.github.io/mathcoach-privacy/">Privacy Policy</a> &bull; <a href="https://sanchitgoyal32.github.io/mathcoach-privacy/child-safety.html">Child Safety</a>
+    Made with &#x2764; in India &bull; <a href="mailto:sanchitgoyal2411@gmail.com">Contact</a> &bull; <a href="https://sanchitgoyal32.github.io/mathcoach-privacy/">Privacy Policy</a> &bull; <a href="https://sanchitgoyal32.github.io/mathcoach-privacy/child-safety.html">Child Safety</a>
     <br>&copy; 2026 MatchCoach
 </footer>
 
